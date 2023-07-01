@@ -2,7 +2,7 @@ FROM php:8.2-fpm
 
 RUN apt -y update
 
-RUN apt -y install libzip-dev libpng-dev unzip supervisor \
+RUN apt -y install libzip-dev libpng-dev unzip supervisor ncat \
     && pecl install redis \
     && docker-php-ext-enable redis
 
@@ -38,3 +38,10 @@ RUN chown -R root:root . && chmod -R 777 /var/www/
 
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# entrypoint
+COPY docker/php/entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
