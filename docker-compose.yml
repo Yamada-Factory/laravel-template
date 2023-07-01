@@ -19,8 +19,8 @@ services:
     depends_on:
       - db
       - redis
-    environment:
-      APP_ENV: local
+    env_file:
+      - .env
   db:
     image: mysql:8
     environment:
@@ -31,11 +31,11 @@ services:
       TZ: Asia/Tokyo
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
-      - "3386:3306"
+      - 3386:3306
     volumes:
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./docker/mysql/data:/var/lib/mysql
   redis:
-    image: "redis:latest"
+    image: redis:latest
     ports:
-      - "6389:6379"
+      - 6389:6379
