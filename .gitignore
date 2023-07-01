@@ -17,4 +17,10 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# MySQL
 docker/mysql/data
+
+# Volta
+.yarn
+.yarnrc.yml
