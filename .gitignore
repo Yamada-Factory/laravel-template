@@ -26,5 +26,5 @@ docker/mysql/data
 .yarnrc.yml
 
 # php-cs-fixer
-.php-cs-fixer.dist.php
+.php-cs-fixer.cache
 vendor
