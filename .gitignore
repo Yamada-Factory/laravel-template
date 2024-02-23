@@ -24,3 +24,7 @@ docker/mysql/data
 # Volta
 .yarn
 .yarnrc.yml
+
+# php-cs-fixer
+.php-cs-fixer.dist.php
+vendor
