@@ -12,6 +12,13 @@ done
 # Laravelの依存パッケージをインストール
 composer install --no-interaction --optimize-autoloader
 
+# storage系フォルダ作成
+mkdir -p storage/framework/cache/data/
+mkdir -p storage/framework/app/cache
+mkdir -p storage/framework/sessions
+mkdir -p storage/framework/views
+mkdir -p storage/logs
+
 # キャッシュやログディレクトリのパーミッションを設定
 chown -R www-data:www-data storage bootstrap/cache
 
@@ -29,4 +36,6 @@ php artisan migrate --force
 # キャッシュのクリア
 php artisan cache:clear
 
-php-fpm
+php-fpm -D
+
+nginx -g "daemon off;"
